@@ -5,7 +5,7 @@ pipeline {
         stage ('Build Image') {
             steps {
                 script {
-                    dockerapp = docker.build("julioveiga/buber-dinner", '-f ./BuberDinner.Api/Dockerfile ./BuberDinner.Api')
+                    dockerapp = docker.build("julioveiga/buber-dinner", '-f ./BuberDinner.Api/Dockerfile ./src')
                 }
             }
         }
