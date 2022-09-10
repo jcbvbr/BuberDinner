@@ -6,7 +6,7 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR .
+WORKDIR /BuberDinner
 COPY ["BuberDinner.Api/BuberDinner.Api.csproj", "BuberDinner.Api/"]
 COPY ["BuberDinner.Application/BuberDinner.Application.csproj", "BuberDinner.Application/"]
 COPY ["BuberDinner.Domain/BuberDinner.Domain.csproj", "BuberDinner.Domain/"]
@@ -14,7 +14,7 @@ COPY ["BuberDinner.Contracts/BuberDinner.Contracts.csproj", "BuberDinner.Contrac
 COPY ["BuberDinner.Infrastructure/BuberDinner.Infrastructure.csproj", "BuberDinner.Infrastructure/"]
 RUN dotnet restore "BuberDinner.Api/BuberDinner.Api.csproj"
 COPY . .
-WORKDIR "/BuberDinner.Api"
+WORKDIR "/BuberDinner/BuberDinner.Api"
 RUN dotnet build "BuberDinner.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
