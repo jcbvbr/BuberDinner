@@ -11,11 +11,13 @@ namespace BuberDinner.Domain.Host.ValueObjects
 
         public Guid Value { get; }
 
+        public static HostId Create(Guid value)
+        {
+            return new(value);
+        }
+
         public static HostId Create(string hostId)
         {
-            if (!Guid.TryParse(hostId, out var value))
-                return new HostId(value);
-
             return new(new Guid(hostId));
         }
 

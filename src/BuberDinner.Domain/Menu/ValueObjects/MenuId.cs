@@ -2,7 +2,7 @@
 
 namespace BuberDinner.Domain.Menu.ValueObjects
 {
-    public sealed partial class MenuId : ValueObject
+    public sealed class MenuId : ValueObject
     {
         private MenuId(Guid value)
         {
@@ -10,6 +10,11 @@ namespace BuberDinner.Domain.Menu.ValueObjects
         }
 
         public Guid Value { get; }
+
+        public static MenuId Create(Guid value)
+        {
+            return new(value);
+        }
 
         public static MenuId CreateUnique()
         {

@@ -9,6 +9,10 @@
             Id = id;
         }
 
+#pragma warning disable CS8618
+        protected Entity() { }
+#pragma warning restore CS8618
+
         public override bool Equals(object? obj)
             => obj is Entity<TId> entity && Id.Equals(entity.Id);
 

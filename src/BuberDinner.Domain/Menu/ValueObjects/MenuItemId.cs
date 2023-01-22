@@ -2,19 +2,18 @@
 
 namespace BuberDinner.Domain.Menu.ValueObjects
 {
-    public sealed partial class MenuItemId : ValueObject
+    public sealed class MenuItemId : ValueObject
     {
         private MenuItemId(Guid value)
         {
             Value = value;
         }
 
-        public Guid Value { get; }
+        public Guid Value { get; private set; }
 
-        public static MenuItemId CreateUnique()
-        {
-            return new(Guid.NewGuid());
-        }
+        public static MenuItemId Create(Guid value) => new(value);
+
+        public static MenuItemId CreateUnique() => new(Guid.NewGuid());
 
         public override IEnumerable<object> GetEqualityComponents()
         {

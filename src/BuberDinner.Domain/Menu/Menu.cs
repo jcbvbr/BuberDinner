@@ -18,30 +18,41 @@ namespace BuberDinner.Domain.Menu
             HostId hostId,
             string name,
             string description,
-            List<MenuSection> sections,
-            DateTime createdDateTime,
-            DateTime updatedDateTime) : base(menuId)
+            AverageRating averageRating,
+            List<MenuSection> sections)
+            : base(menuId)
         {
+            HostId = hostId;
             Name = name;
             Description = description;
-            HostId = hostId;
-            CreatedDateTime = createdDateTime;
-            UpdatedDateTime = updatedDateTime;
-
+            AverageRating = averageRating;
             _sections = sections;
+            CreatedDateTime = DateTime.UtcNow;
+            UpdatedDateTime = DateTime.UtcNow;
         }
 
-        public static Menu Create(HostId hostId, string name, string description, List<MenuSection> menuSections)
-            => new(MenuId.CreateUnique(), hostId, name, description, menuSections, DateTime.UtcNow, DateTime.UtcNow);
+#pragma warning disable CS8618
+        private Menu() { }
+#pragma warning restore CS8618
+
+        public static Menu Create(HostId hostId, string name, string description, AverageRating? averageRating, List<MenuSection> menuSections)
+            => new(
+                    MenuId.CreateUnique(),
+                    hostId,
+                    name,
+                    description,
+                    averageRating,
+                    menuSections ?? new()
+                );
 
 
-        public string Name { get; }
-        public string Description { get; }
-        public AverageRating AverageRating { get; }
-        public DateTime CreatedDateTime { get; }
-        public DateTime UpdatedDateTime { get; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public AverageRating? AverageRating { get; private set; }
+        public DateTime CreatedDateTime { get; private set; }
+        public DateTime UpdatedDateTime { get; private set; }
 
-        public HostId HostId { get; }
+        public HostId HostId { get; private set; }
         public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
         public IReadOnlyList<DinnerId> DinnerIds => _dinnerIds.AsReadOnly();
         public IReadOnlyList<MenuReviewId> MenuReviewIds => _menuReviewIds.AsReadOnly();
