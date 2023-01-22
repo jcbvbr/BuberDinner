@@ -1,0 +1,23 @@
+@host=http://localhost:5000
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZGIyMzU4NS0wOWEzLTRjNjUtOGY5MS0wNzdhNGFkZTMyZTAiLCJnaXZlbl9uYW1lIjoiQW1pY2hhaSIsImZhbWlseV9uYW1lIjoiTWFudGluYmFuZCIsImp0aSI6IjJiMWE4YTRlLWNkYTEtNGVmYi04N2ZmLTRmOWEyZjNjYWRiMCIsImV4cCI6MTY3NDM1MjkwMywiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.RQBSHPZ76ZROS5jpV6s3L8xiOTyj-g3NW1sMfjYcLe0
+@hostId=asdf
+
+POST {{host}}/hosts/{{hostId}}/menus
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{    
+    "name": "Yummy Menu",
+    "description": "A menu with yummy food",
+    "sections": [
+        {
+            "name": "Appetizers",
+            "description": "Starters",
+            "items": [
+                {
+                    "name": "Frid Pickles",
+                    "description": "Deep fried...."
+                }
+            ]
+        }
+    ]
+}

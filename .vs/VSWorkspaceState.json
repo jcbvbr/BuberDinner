@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Requests",
+    "\\Requests\\Authentication",
+    "\\Requests\\Menus",
+    "\\src"
   ],
-  "SelectedNode": "\\BuberDinner.sln",
+  "SelectedNode": "\\src\\BuberDinner.sln",
   "PreviewInSolutionExplorer": false
 }

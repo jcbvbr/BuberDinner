@@ -1,6 +1,6 @@
 using BuberDinner.Application.Common.Interfaces.Authentication;
+using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Application.Common.Interfaces.Services;
-using BuberDinner.Application.Persistence;
 using BuberDinner.Infrastructure.Authentication;
 using BuberDinner.Infrastructure.Persistence;
 using BuberDinner.Infrastructure.Services;
@@ -17,10 +17,19 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddAuth(configuration);
+        services
+                .AddAuth(configuration)
+                .AddPersistence();
+
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
+        return services;
+    }
+
+    public static IServiceCollection AddPersistence(this IServiceCollection services)
+    {
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IMenuRepository, MenuRepository>();
 
         return services;
     }
